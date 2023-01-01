@@ -1,7 +1,8 @@
 ---
-nav:
-  title: Button
-  path: /components
+title: Button
+group:
+  title: 通用
+  path: /common
 ---
 
 ## Button
@@ -12,5 +13,5 @@ Demo:
 import React from 'react';
 import { Button } from 'toy';
 
-export default () => <Button/>;
+export default () => <Button />;
 ```
