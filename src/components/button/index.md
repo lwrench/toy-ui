@@ -5,13 +5,6 @@ group:
   path: /common
 ---
 
-## Button
+# Button
 
-Demo:
-
-```tsx
-import React from 'react';
-import { Button } from 'toy';
-
-export default () => <Button />;
-```
+<code src="./examples/basic.tsx" />

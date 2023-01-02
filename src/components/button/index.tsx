@@ -1,7 +1,9 @@
 import React from 'react';
 
-function Button() {
-  return <div>button</div>;
+function ButtonComponent() {
+  return <div className="toy-btn-primary">button</div>;
 }
 
-export { Button };
+ButtonComponent.displayName = 'Button';
+
+export default ButtonComponent;
