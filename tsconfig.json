@@ -11,7 +11,7 @@
     "declaration": true,
     "baseUrl": "./",
     "paths": {
-      "@lwrench/toy-ui": ["src/components"]
+      "@lwrench/toy-ui": ["src"]
     }
   }
 }
