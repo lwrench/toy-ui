@@ -1,5 +1,4 @@
 import * as React from 'react';
-import './style.css';
 import { Popover } from '@lwrench/toy-ui';
 
 export default function App() {
