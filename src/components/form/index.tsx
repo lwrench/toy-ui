@@ -1,3 +1,15 @@
 import Form from './form';
+import Item from './item';
+import useForm from './useForm';
 
-export default Form;
+type FormType = typeof Form;
+
+export interface FormComponent extends FormType {
+  Item: typeof Item;
+  useForm: typeof useForm;
+}
+
+const FormComp: FormComponent = Form as FormComponent;
+FormComp.Item = Item;
+
+export default FormComp;
