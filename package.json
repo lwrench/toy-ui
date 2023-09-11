@@ -54,6 +54,7 @@
     "yorkie": "^2.0.0"
   },
   "dependencies": {
+    "antd": "^5.8.5",
     "lodash": "^4.17.21"
   }
 }

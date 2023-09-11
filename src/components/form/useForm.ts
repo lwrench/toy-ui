@@ -11,6 +11,7 @@ function getFormInstance(): FormInstance {
     setFieldsValues: store.setFieldsValues,
     setFieldValue: store.setFieldValue,
     validate: store.validate,
+    submit: store.submit,
   };
 }
 
@@ -24,4 +25,6 @@ export default function useForm(form?: FormInstance) {
       formRef.current = getFormInstance();
     }
   }
+
+  return [formRef.current];
 }
