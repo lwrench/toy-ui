@@ -1,3 +1,6 @@
+import { ReactNode } from 'react';
+import { innerCallbackType } from './store';
+
 export type KV<T = any> = Record<string, T>;
 
 export type ComponentType = keyof JSX.IntrinsicElements | React.ComponentType<any>;
@@ -15,7 +18,22 @@ export interface Callbacks<
   onSubmit?: (values: FormData) => void;
 }
 
-export interface FormInstance {
+export interface StoreInternalMethods<
+  FormData = any,
+  FieldValue = FormData[keyof FormData],
+  FieldKey = keyof FormData,
+> {
+  registerField: () => void;
+  internalSetCallbacks: (
+    callbacks: Pick<FormProps<FormData, FieldValue, FieldKey>, innerCallbackType>,
+  ) => void;
+}
+
+export interface FormInstance<
+  FormData = any,
+  FieldValue = FormData[keyof FormData],
+  FieldKey = keyof FormData,
+> {
   getFieldsValues: () => KV;
   getFieldValue: (field: string | string[]) => KV;
   resetFields: () => void;
@@ -23,6 +41,7 @@ export interface FormInstance {
   setFieldsValues: (values: KV) => void;
   validate: () => boolean | Promise<boolean>;
   submit: () => void;
+  getInternalMethods: (key?: string) => StoreInternalMethods<FormData, FieldValue, FieldKey> | KV;
 }
 
 export interface FormProps<
@@ -34,4 +53,13 @@ export interface FormProps<
   form?: FormInstance;
   onChange?: (value: Partial<FormData>, values: Partial<FormData>) => void;
   onSubmit?: (values: FormData) => void;
+}
+
+export interface FormItemProps<
+  FormData = any,
+  FieldValue = FormData[keyof FormData],
+  FieldKey = keyof FormData,
+> {
+  name?: FieldKey;
+  label?: ReactNode;
 }

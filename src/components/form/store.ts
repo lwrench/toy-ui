@@ -1,23 +1,32 @@
 import { cloneDeep, get, set, has } from 'lodash';
-import { KV } from './types';
+import FormItem from './item';
+import { FormProps, KV } from './types';
 
 export const INTERNAL_METHODS_KEY = 'RC_FORM_INTERNAL_HOOKS';
 
-export default class Store {
-  callbacks = {};
+export type innerCallbackType = 'onSubmit' | 'onChange';
 
-  registerFields = [];
+export default class Store<
+  FormData = any,
+  FieldValue = FormData[keyof FormData],
+  FieldKey = keyof FormData,
+> {
+  callbacks: Pick<FormProps<FormData, FieldValue, FieldKey>, innerCallbackType> = {};
+
+  registerFields: FormItem[] = [];
 
   store = {};
 
-  private registerField = (item) => {
+  private registerField = (item: FormItem) => {
     this.registerFields.push(item);
     return () => {
       this.registerFields = this.registerFields.filter((x) => x !== item);
     };
   };
 
-  private setCallbacks = (callbacks: Callbacks) => {
+  private internalSetCallbacks = (
+    callbacks: Pick<FormProps<FormData, FieldValue, FieldKey>, innerCallbackType>,
+  ) => {
     this.callbacks = callbacks;
   };
 
@@ -25,9 +34,10 @@ export default class Store {
     if (key === INTERNAL_METHODS_KEY) {
       return {
         registerField: this.registerField,
-        setCallbacks: this.setCallbacks,
+        internalSetCallbacks: this.internalSetCallbacks,
       };
     }
+    return {};
   }
 
   getFieldsValues() {

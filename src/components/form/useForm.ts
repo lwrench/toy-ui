@@ -12,6 +12,7 @@ function getFormInstance(): FormInstance {
     setFieldValue: store.setFieldValue,
     validate: store.validate,
     submit: store.submit,
+    getInternalMethods: store.getInternalMethods,
   };
 }
 
