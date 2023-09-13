@@ -2,6 +2,7 @@ import React, { forwardRef, PropsWithChildren, useImperativeHandle } from 'react
 import { ComponentType, FormInstance, FormProps } from './types';
 import useForm from './useForm';
 import { INTERNAL_METHODS_KEY } from './store';
+import { FormContext } from './context';
 
 function Form<
   FormData extends unknown = any,
@@ -23,16 +24,22 @@ function Form<
     return formInstance;
   });
 
+  const contextProps = {
+    store: formInstance,
+  };
+
   return (
-    <Wrapper
-      onSubmit={(e: HTMLFormElement | any) => {
-        e.preventDefault();
-        e.stopPropagation();
-        formInstance.submit();
-      }}
-    >
-      {props.children}
-    </Wrapper>
+    <FormContext.Provider value={contextProps}>
+      <Wrapper
+        onSubmit={(e: HTMLFormElement | any) => {
+          e.preventDefault();
+          e.stopPropagation();
+          formInstance.submit();
+        }}
+      >
+        {props.children}
+      </Wrapper>
+    </FormContext.Provider>
   );
 }
 

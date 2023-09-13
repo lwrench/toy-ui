@@ -55,6 +55,14 @@ export interface FormProps<
   onSubmit?: (values: FormData) => void;
 }
 
+export interface FormContextProps<
+  FormData = any,
+  FieldValue = FormData[keyof FormData],
+  FieldKey = keyof FormData,
+> {
+  store?: FormInstance<FormData, FieldValue, FieldKey>;
+}
+
 export interface FormItemProps<
   FormData = any,
   FieldValue = FormData[keyof FormData],
@@ -62,4 +70,5 @@ export interface FormItemProps<
 > {
   name?: FieldKey;
   label?: ReactNode;
+  children?: ReactNode;
 }
