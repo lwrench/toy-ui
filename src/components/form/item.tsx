@@ -1,12 +1,16 @@
 import React, { Component, ReactElement, ReactNode } from 'react';
 import { FormContext } from './context';
-import { INTERNAL_METHODS_KEY } from './store';
-import { ControllableProps, FormContextProps, FormItemProps } from './types';
+import { ChangeInfoType, INTERNAL_METHODS_KEY, NotifyType } from './store';
+import { ControllableProps, FormContextProps, FormItemProps, KeyType } from './types';
+
+export function isFieldMatch(propsField: string, changedField: string) {
+  return propsField === changedField;
+}
 
 export default class Item<
   FormData = any,
   FieldValue = FormData[keyof FormData],
-  FieldKey = keyof FormData,
+  FieldKey extends KeyType = keyof FormData,
 > extends Component<FormItemProps<FormData, FieldValue, FieldKey>> {
   static defaultProps = {
     trigger: 'onChange',
@@ -46,11 +50,26 @@ export default class Item<
     return !!this.props.field;
   };
 
-  public onStoreChange = () => {};
+  private updateFormItem = () => {
+    if (!this.mounted) return;
+    this.forceUpdate();
+  };
+
+  public onStoreChange = (type: NotifyType, info: ChangeInfoType<FieldKey>) => {
+    const { field: propsField } = this.props;
+
+    switch (type) {
+      case 'internalSetFieldValue':
+        if (isFieldMatch(propsField as string, info.field as string)) {
+          this.updateFormItem();
+        }
+    }
+  };
 
   private getFieldValue = () => {
     const field = this.props.field;
     const store = this.context.store;
+    console.log('getFieldValue', store);
     return field
       ? store?.getInternalMethods(INTERNAL_METHODS_KEY).internalGetFieldValue(field)
       : undefined;
@@ -58,14 +77,16 @@ export default class Item<
 
   private setFieldValue = (value: any) => {
     const store = this.context.store;
+    const field = this.props.field;
 
     const internalSetFieldValue =
       store?.getInternalMethods(INTERNAL_METHODS_KEY).internalSetFieldValue;
 
-    internalSetFieldValue && internalSetFieldValue(value);
+    internalSetFieldValue && internalSetFieldValue(field, value);
   };
 
   public handleChange = (value: unknown) => {
+    console.log('handleChange', value);
     this.setFieldValue(value);
   };
 
@@ -78,7 +99,7 @@ export default class Item<
     return child as ReactNode;
   };
 
-  renderControl(children: ReactNode) {
+  renderControl = (children: ReactNode) => {
     const { store } = this.context;
     const child = React.Children.only(children) as ReactElement;
 
@@ -87,7 +108,7 @@ export default class Item<
     controllableProps['value'] = this.getFieldValue();
 
     return React.cloneElement(child, controllableProps);
-  }
+  };
 
   render() {
     const { label, field } = this.props;

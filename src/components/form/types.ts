@@ -4,6 +4,7 @@ import { innerCallbackType } from './store';
 export type KV<T = any> = Record<string, T>;
 
 export type ComponentType = keyof JSX.IntrinsicElements | React.ComponentType<any>;
+export type KeyType = string | number | symbol;
 
 export interface Item {
   label: string;
@@ -12,7 +13,7 @@ export interface Item {
 export interface Callbacks<
   FormData = any,
   FieldValue = FormData[keyof FormData],
-  FieldKey = keyof FormData,
+  FieldKey extends KeyType = keyof FormData,
 > {
   onChange?: (value: Partial<FormData>, values: Partial<FormData>) => void;
   onSubmit?: (values: FormData) => void;
@@ -21,11 +22,11 @@ export interface Callbacks<
 export interface StoreInternalMethods<
   FormData = any,
   FieldValue = FormData[keyof FormData],
-  FieldKey = keyof FormData,
+  FieldKey extends KeyType = keyof FormData,
 > {
   registerField: () => void;
-  internalGetFieldValue: (field: string | string[]) => void;
-  internalSetFieldValue: (field: string | string[], value: any) => void;
+  internalGetFieldValue: (field: string) => void;
+  internalSetFieldValue: (field: string, value: any) => void;
   internalSetCallbacks: (
     callbacks: Pick<FormProps<FormData, FieldValue, FieldKey>, innerCallbackType>,
   ) => void;
@@ -34,12 +35,12 @@ export interface StoreInternalMethods<
 export interface FormInstance<
   FormData = any,
   FieldValue = FormData[keyof FormData],
-  FieldKey = keyof FormData,
+  FieldKey extends KeyType = keyof FormData,
 > {
   getFieldsValues: () => KV;
-  getFieldValue: (field: string | string[]) => KV;
+  getFieldValue: (field: string) => KV;
   resetFields: () => void;
-  setFieldValue: (field: string | string[], value: unknown) => void;
+  setFieldValue: (field: string, value: unknown) => void;
   setFieldsValues: (values: KV) => void;
   validate: () => boolean | Promise<boolean>;
   submit: () => void;
@@ -49,7 +50,7 @@ export interface FormInstance<
 export interface FormProps<
   FormData = any,
   FieldValue = FormData[keyof FormData],
-  FieldKey = keyof FormData,
+  FieldKey extends KeyType = keyof FormData,
 > {
   wrapper?: ComponentType;
   form?: FormInstance;
@@ -60,7 +61,7 @@ export interface FormProps<
 export interface FormContextProps<
   FormData = any,
   FieldValue = FormData[keyof FormData],
-  FieldKey = keyof FormData,
+  FieldKey extends KeyType = keyof FormData,
 > {
   store?: FormInstance<FormData, FieldValue, FieldKey>;
 }
@@ -72,7 +73,7 @@ export interface ControllableProps {
 export interface FormItemProps<
   FormData = any,
   FieldValue = FormData[keyof FormData],
-  FieldKey = keyof FormData,
+  FieldKey extends KeyType = keyof FormData,
 > {
   field?: FieldKey;
   label?: ReactNode;

@@ -11,5 +11,6 @@ export interface FormComponent extends FormType {
 
 const FormComp: FormComponent = Form as FormComponent;
 FormComp.Item = Item;
+FormComp.useForm = useForm;
 
 export default FormComp;
