@@ -24,6 +24,8 @@ export interface StoreInternalMethods<
   FieldKey = keyof FormData,
 > {
   registerField: () => void;
+  internalGetFieldValue: (field: string | string[]) => void;
+  internalSetFieldValue: (field: string | string[], value: any) => void;
   internalSetCallbacks: (
     callbacks: Pick<FormProps<FormData, FieldValue, FieldKey>, innerCallbackType>,
   ) => void;
@@ -49,7 +51,7 @@ export interface FormProps<
   FieldValue = FormData[keyof FormData],
   FieldKey = keyof FormData,
 > {
-  wrapper: ComponentType;
+  wrapper?: ComponentType;
   form?: FormInstance;
   onChange?: (value: Partial<FormData>, values: Partial<FormData>) => void;
   onSubmit?: (values: FormData) => void;
@@ -63,12 +65,16 @@ export interface FormContextProps<
   store?: FormInstance<FormData, FieldValue, FieldKey>;
 }
 
+export interface ControllableProps {
+  value?: any;
+  onChange?: (v?: any) => void;
+}
 export interface FormItemProps<
   FormData = any,
   FieldValue = FormData[keyof FormData],
   FieldKey = keyof FormData,
 > {
-  name?: FieldKey;
+  field?: FieldKey;
   label?: ReactNode;
-  children?: ReactNode;
+  children?: ReactNode | ((props: ControllableProps) => ReactNode);
 }

@@ -50,8 +50,18 @@ export default class Store<
     }
   }
 
-  resetFields() {
-    this.store = {};
+  private internalGetFieldValue(field: string | string[]) {
+    if (has(this.store, field)) {
+      return get(this.store, field);
+    }
+  }
+
+  private internalSetFieldValue(field: string | string[], value: FieldValue) {
+    if (!field) {
+      return;
+    }
+
+    set(this.store, field, value);
   }
 
   setFieldValue(field: string | string[], value: unknown) {
@@ -60,6 +70,10 @@ export default class Store<
 
   setFieldsValues(values: KV) {
     this.store = cloneDeep(values);
+  }
+
+  resetFields() {
+    this.store = {};
   }
 
   validate(): boolean | Promise<boolean> {

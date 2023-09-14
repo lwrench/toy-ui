@@ -109,7 +109,7 @@ function ContentInternal({ children }: { children: React.ReactNode }) {
   }, []);
   const refClickOutside = useClickOutside(dismiss);
 
-  const mergedRef = mergeRef(ref, refFocusTrapping, refClickOutside);
+  const mergedRef = mergeRef([ref, refFocusTrapping, refClickOutside]);
   return (
     <dialog
       open={true}
@@ -226,13 +226,27 @@ function useFocusTrapping() {
   return ref;
 }
 
-function mergeRef(...refs) {
-  return (el) => {
+// function mergeRef<T = any>(...refs: Array<React.MutableRefObject<T>>): React.RefCallback<T> {
+//   return (el) => {
+//     refs.forEach((ref) => {
+//       if (typeof ref === 'function') {
+//         ref(el);
+//       } else if (ref !== null) {
+//         (ref as React.MutableRefObject<T | null>).current = el;
+//       }
+//     });
+//   };
+// }
+
+function mergeRef<T = any>(
+  refs: Array<React.MutableRefObject<T> | React.LegacyRef<T>>,
+): React.RefCallback<T> {
+  return (value) => {
     refs.forEach((ref) => {
       if (typeof ref === 'function') {
-        ref(el);
-      } else {
-        ref.current = el;
+        ref(value);
+      } else if (ref != null) {
+        (ref as React.MutableRefObject<T | null>).current = value;
       }
     });
   };

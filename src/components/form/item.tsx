@@ -1,13 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component, ReactElement, ReactNode } from 'react';
 import { FormContext } from './context';
 import { INTERNAL_METHODS_KEY } from './store';
-import { FormContextProps, FormItemProps } from './types';
+import { ControllableProps, FormContextProps, FormItemProps } from './types';
 
 export default class Item<
   FormData = any,
   FieldValue = FormData[keyof FormData],
   FieldKey = keyof FormData,
 > extends Component<FormItemProps<FormData, FieldValue, FieldKey>> {
+  static defaultProps = {
+    trigger: 'onChange',
+    triggerPropName: 'value',
+  };
+
   private mounted = false;
 
   private removeRegisterField: null | (() => void) = null;
@@ -37,30 +42,61 @@ export default class Item<
     this.mounted = false;
   }
 
-  getChild = () => {
-    const { children } = this.props;
-    const { store } = this.context;
-    let child = children;
-    // if (isFunction(children)) {
-    //   child = children(
-    //     store.getFields(),
-    //     {
-    //       ...store,
-    //     },
-    //     this.props.isFormList && {
-    //       value: this.getFieldValue(),
-    //       onChange: this.handleTrigger,
-    //     },
-    //   );
-    // }
-    // this.childrenElement = child;
-    return child;
+  public hasFieldProps = (): boolean => {
+    return !!this.props.field;
   };
 
-  render() {
-    const { label, name } = this.props;
+  public onStoreChange = () => {};
 
-    const child = this.getChild();
+  private getFieldValue = () => {
+    const field = this.props.field;
+    const store = this.context.store;
+    return field
+      ? store?.getInternalMethods(INTERNAL_METHODS_KEY).internalGetFieldValue(field)
+      : undefined;
+  };
+
+  private setFieldValue = (value: any) => {
+    const store = this.context.store;
+
+    const internalSetFieldValue =
+      store?.getInternalMethods(INTERNAL_METHODS_KEY).internalSetFieldValue;
+
+    internalSetFieldValue && internalSetFieldValue(value);
+  };
+
+  public handleChange = (value: unknown) => {
+    this.setFieldValue(value);
+  };
+
+  getChild = () => {
+    const { children } = this.props;
+    let child = children;
+    if (typeof children === 'function') {
+      child = children({ value: this.getFieldValue(), onChange: this.handleChange });
+    }
+    return child as ReactNode;
+  };
+
+  renderControl(children: ReactNode) {
+    const { store } = this.context;
+    const child = React.Children.only(children) as ReactElement;
+
+    const controllableProps: ControllableProps = {};
+    controllableProps['onChange'] = this.handleChange;
+    controllableProps['value'] = this.getFieldValue();
+
+    return React.cloneElement(child, controllableProps);
+  }
+
+  render() {
+    const { label, field } = this.props;
+
+    let child = this.getChild();
+
+    if (this.hasFieldProps() && React.Children.count(child) === 1) {
+      child = this.renderControl(child);
+    }
 
     return (
       <div className="form-item">
