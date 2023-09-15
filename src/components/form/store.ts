@@ -11,7 +11,7 @@ export type NotifyType = 'setFieldValue' | 'reset' | 'internalSetFieldValue';
 export type ChangeInfoType<T> = {
   prev: any;
   field?: T;
-  next?: Record<string, any>;
+  next?: any;
 };
 export default class Store<
   FormData = any,
@@ -72,13 +72,14 @@ export default class Store<
     }
   };
 
-  private internalSetFieldValue = (field: string, value: FieldValue) => {
+  private internalSetFieldValue = (field: FieldKey, value: FieldValue) => {
     if (!field) {
       return;
     }
-
+    const prev = get(cloneDeep(this.store), field);
     set(this.store, field, value);
     this.triggerOnChange({ [field]: value } as unknown as Partial<FormData>);
+    this.notify('internalSetFieldValue', {prev: prev, field: field, next: value})
   };
 
   private notify = (type: NotifyType, info: ChangeInfoType<FieldKey>) => {
