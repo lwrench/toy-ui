@@ -10,6 +10,7 @@
     "skipLibCheck": true,
     "declaration": true,
     "baseUrl": "./",
+    "declarationDir": "lib",
     "paths": {
       "@lwrench/toy-ui": ["src"]
     }

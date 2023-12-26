@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useCallback, useContext, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useClickOutside } from './hooks/useClickOutside';
+import { Position, Rect } from './types';
 
 const defaultRect = {
   left: 0,

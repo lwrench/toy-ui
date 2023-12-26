@@ -7,7 +7,8 @@
 /package-lock.json
 
 # production
-/es
+/esm
+/lib
 /docs-dist
 
 # misc
