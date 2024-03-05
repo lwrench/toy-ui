@@ -79,32 +79,3 @@ export interface FormItemProps<
   label?: ReactNode;
   children?: ReactNode | ((props: ControllableProps) => ReactNode);
 }
-
-// validator
-type StoreValue = any;
-
-export type Validator = (
-  rule: Rule,
-  value: StoreValue,
-  callback?: (error?: string) => void,
-) => Promise<void | any> | void;
-
-export type Rule = {
-  required?: boolean;
-  message?: string | ReactElement;
-  validateTrigger?: string | string[];
-  field: string;
-  validator: Validator;
-};
-
-export type Rules = Record<string, Rule[]>;
-
-export type PendingValidateData = Record<string, unknown>;
-
-export type Error = {
-  name: string;
-  errors: Array<string | boolean>;
-};
-export type Errors = Error[];
-
-export type Series = Record<string, { rule: Rule; value: unknown; source: PendingValidateData }[]>;
