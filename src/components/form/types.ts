@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactElement, ReactNode } from 'react';
 import { innerCallbackType } from './store';
 
 export type KV<T = any> = Record<string, T>;
