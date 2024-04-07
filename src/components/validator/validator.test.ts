@@ -1,4 +1,4 @@
-import { Schema } from './validator';
+import { Schema } from './index';
 
 const rules = {
   username: [

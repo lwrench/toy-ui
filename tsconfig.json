@@ -14,5 +14,6 @@
     "paths": {
       "@lwrench/toy-ui": ["src"]
     }
-  }
+  },
+  "exclude": ["./src/components/validator"]
 }
