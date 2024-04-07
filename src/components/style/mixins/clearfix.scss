@@ -1,4 +1,4 @@
-.mixin-clearfix() {
+@mixin clearfix {
   display: block;
   zoom: 1;
 
@@ -8,6 +8,6 @@
     height: 0;
     font-size: 0;
     visibility: hidden;
-    content: ' ';
+    content: '';
   }
 }
