@@ -8,6 +8,7 @@ specifiers:
   '@types/react': ^18.2.6
   '@types/react-dom': ^18.2.4
   '@umijs/fabric': ^2.8.1
+  '@umijs/plugin-sass': ^1.1.1
   '@umijs/test': ^3.0.5
   antd: ^5.8.5
   babel-plugin-import: ^1.13.5
@@ -23,6 +24,7 @@ specifiers:
   react: ^18.2.0
   react-dom: ^18.2.0
   rimraf: ^5.0.5
+  sass: ^1.74.1
   typescript: ^5.2.2
   yorkie: ^2.0.0
 
@@ -39,11 +41,12 @@ devDependencies:
   '@types/react': 18.2.21
   '@types/react-dom': 18.2.7
   '@umijs/fabric': 2.14.1
+  '@umijs/plugin-sass': 1.1.1
   '@umijs/test': 3.5.41
   babel-plugin-import: 1.13.8
   color: 4.2.3
   cpr: 3.0.1
-  dumi: 1.1.53_vegmnuvoswdxuttpuhvewcem44
+  dumi: 1.1.53_dlq6i6czlmpd4puctt46qdvjfm
   father-build: 1.22.5
   gh-pages: 3.2.3
   lint-staged: 10.5.4
@@ -51,7 +54,8 @@ devDependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   rimraf: 5.0.5
-  typescript: 5.2.2
+  sass: 1.74.1
+  typescript: 5.4.4
   yorkie: 2.0.0
 
 packages:
@@ -4248,6 +4252,19 @@ packages:
       umi: 3.5.41
     dev: true
 
+  /@umijs/plugin-sass/1.1.1:
+    resolution: {integrity: sha512-z9Gyn/pasXLD/URjErBuMH41DPGd669kmeDUUDnYQMbazNAa2+hiWKsVbHhLM0In27GE/ElQZ+bk/9M9dgH88A==}
+    peerDependencies:
+      umi: 3.x
+    dependencies:
+      sass: 1.74.1
+      sass-loader: 8.0.2_sass@1.74.1
+    transitivePeerDependencies:
+      - fibers
+      - node-sass
+      - webpack
+    dev: true
+
   /@umijs/preset-built-in/3.5.41_wcqkhtmu7mswc6yz4uyexck3ty:
     resolution: {integrity: sha512-YoUeiaoiG6Kv/9QkVYj4wUXP7dqdxOt95H9F7e8QaukH6le9CvvRyRn+NSLGk3R7Owv4jdkMBujwFzj1/85O3A==}
     peerDependencies:
@@ -4284,7 +4301,7 @@ packages:
       - react-dom
     dev: true
 
-  /@umijs/preset-dumi/1.1.53_4vnxpylmxlw3bk7lfzq22amuyu:
+  /@umijs/preset-dumi/1.1.53_2lym6qv7bm7bdokspk5xc2s7oe:
     resolution: {integrity: sha512-Vdumcuc/g87pclB7JuqFsfDEeCwxao27VZAV2fBZcwrK+4PQ3imnVfSvQxZjggv0ISw5yfdYgQtDf7adpuUXbA==}
     peerDependencies:
       umi: ^3.0.0
@@ -4318,7 +4335,7 @@ packages:
       js-yaml: 3.14.1
       lodash.throttle: 4.1.1
       lz-string: 1.5.0
-      react-docgen-typescript-dumi-tmp: 1.22.1-0_typescript@5.2.2
+      react-docgen-typescript-dumi-tmp: 1.22.1-0_typescript@5.4.4
       rehype-autolink-headings: 4.0.0
       rehype-mathjax: 3.1.0
       rehype-remove-comments: 4.0.2
@@ -5996,6 +6013,15 @@ packages:
     engines: {node: '>= 0.10'}
     dev: true
 
+  /clone-deep/4.0.1:
+    resolution: {integrity: sha512-neHB9xuzh/wk0dIHweyAXv2aPGZIVk3pLMe+/RNzINf17fe0OG96QroktYAUm7SM1PBnzTabaLboqqxDyMU+SQ==}
+    engines: {node: '>=6'}
+    dependencies:
+      is-plain-object: 2.0.4
+      kind-of: 6.0.3
+      shallow-clone: 3.0.1
+    dev: true
+
   /clone-regexp/2.2.0:
     resolution: {integrity: sha512-beMpP7BOtTipFuW8hrJvREQ2DrRu3BE7by0ZpibtfBA+qfHYvMGTc2Yb1JMYPKg/JUw0CHYvpg796aNTSW9z7Q==}
     engines: {node: '>=6'}
@@ -6980,7 +7006,7 @@ packages:
       '@umijs/preset-dumi': 1.x
       react: ^16.13.1 || ^17.0.0
     dependencies:
-      '@umijs/preset-dumi': 1.1.53_4vnxpylmxlw3bk7lfzq22amuyu
+      '@umijs/preset-dumi': 1.1.53_2lym6qv7bm7bdokspk5xc2s7oe
       lodash.throttle: 4.1.1
       prism-react-renderer: 1.3.5_react@18.2.0
       prismjs: 1.29.0
@@ -6993,11 +7019,11 @@ packages:
       - react-dom
     dev: true
 
-  /dumi/1.1.53_vegmnuvoswdxuttpuhvewcem44:
+  /dumi/1.1.53_dlq6i6czlmpd4puctt46qdvjfm:
     resolution: {integrity: sha512-mESNU+KMaJE10WJAS+2GxBdCAEdqsb4whgY94FOP/C87Toh/r7dTjLllvLGtsvDfXtTMywwV+s9zW089RykySA==}
     hasBin: true
     dependencies:
-      '@umijs/preset-dumi': 1.1.53_4vnxpylmxlw3bk7lfzq22amuyu
+      '@umijs/preset-dumi': 1.1.53_2lym6qv7bm7bdokspk5xc2s7oe
       umi: 3.5.41
     transitivePeerDependencies:
       - bufferutil
@@ -9151,6 +9177,10 @@ packages:
     hasBin: true
     dependencies:
       queue: 6.0.1
+    dev: true
+
+  /immutable/4.3.5:
+    resolution: {integrity: sha512-8eabxkth9gZatlwl5TBuJnCsoTADlL6ftEr7A4qgdaTsPyreilDSnUk57SO+jfKcNtxPa22U5KK6DSeAYhpBJw==}
     dev: true
 
   /import-cwd/2.1.0:
@@ -11622,6 +11652,10 @@ packages:
 
   /natural-compare/1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
+    dev: true
+
+  /neo-async/2.6.2:
+    resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: true
 
   /nice-try/1.0.5:
@@ -14102,12 +14136,12 @@ packages:
     resolution: {integrity: sha512-dSxo2Mn6Zx4HajeCeQNLefwEO4kNtV/0E682R1+ZTyFRPqxDa5zYb5qM/ocqw9Bxr/kFQO0IUiqdV7wdHw+Cdg==}
     dev: true
 
-  /react-docgen-typescript-dumi-tmp/1.22.1-0_typescript@5.2.2:
+  /react-docgen-typescript-dumi-tmp/1.22.1-0_typescript@5.4.4:
     resolution: {integrity: sha512-wjuAm1yj+ZZucovow2VF0MXkH2SGZ+squZxfNdnam3oyUbHy/xZaU1ZabCn7rY+13ZFx0/NLda+ZuBgF3g8vBA==}
     peerDependencies:
       typescript: '>= 3.x'
     dependencies:
-      typescript: 5.2.2
+      typescript: 5.4.4
     dev: true
 
   /react-dom/16.14.0_react@16.14.0:
@@ -14983,6 +15017,40 @@ packages:
       - supports-color
     dev: true
 
+  /sass-loader/8.0.2_sass@1.74.1:
+    resolution: {integrity: sha512-7o4dbSK8/Ol2KflEmSco4jTjQoV988bM82P9CZdmo9hR3RLnvNc0ufMNdMrB0caq38JQ/FgF4/7RcbcfKzxoFQ==}
+    engines: {node: '>= 8.9.0'}
+    peerDependencies:
+      fibers: '>= 3.1.0'
+      node-sass: ^4.0.0
+      sass: ^1.3.0
+      webpack: ^4.36.0 || ^5.0.0
+    peerDependenciesMeta:
+      fibers:
+        optional: true
+      node-sass:
+        optional: true
+      sass:
+        optional: true
+    dependencies:
+      clone-deep: 4.0.1
+      loader-utils: 1.4.2
+      neo-async: 2.6.2
+      sass: 1.74.1
+      schema-utils: 2.7.1
+      semver: 6.3.1
+    dev: true
+
+  /sass/1.74.1:
+    resolution: {integrity: sha512-w0Z9p/rWZWelb88ISOLyvqTWGmtmu2QJICqDBGyNnfG4OUnPX9BBjjYIXUpXCMOOg5MQWNpqzt876la1fsTvUA==}
+    engines: {node: '>=14.0.0'}
+    hasBin: true
+    dependencies:
+      chokidar: 3.5.3
+      immutable: 4.3.5
+      source-map-js: 1.0.2
+    dev: true
+
   /sax/1.2.4:
     resolution: {integrity: sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==}
     dev: true
@@ -15012,6 +15080,15 @@ packages:
     dependencies:
       ajv: 6.12.6
       ajv-errors: 1.0.1_ajv@6.12.6
+      ajv-keywords: 3.5.2_ajv@6.12.6
+    dev: true
+
+  /schema-utils/2.7.1:
+    resolution: {integrity: sha512-SHiNtMOUGWBQJwzISiVYKu82GiV4QYGePp3odlY1tuKO7gPtphAT5R/py0fA6xtbgLL/RvtJZnU9b8s0F1q0Xg==}
+    engines: {node: '>= 8.9.0'}
+    dependencies:
+      '@types/json-schema': 7.0.12
+      ajv: 6.12.6
       ajv-keywords: 3.5.2_ajv@6.12.6
     dev: true
 
@@ -15103,6 +15180,13 @@ packages:
     dependencies:
       inherits: 2.0.4
       safe-buffer: 5.2.1
+    dev: true
+
+  /shallow-clone/3.0.1:
+    resolution: {integrity: sha512-/6KqX+GVUdqPuPPd2LxDDxzX6CAbjJehAAOKlNpqqUpAqPM6HeL8f+o3a+JsyGjn2lv0WY8UsTgUJjU9Ok55NA==}
+    engines: {node: '>=8'}
+    dependencies:
+      kind-of: 6.0.3
     dev: true
 
   /shallowequal/1.1.0:
@@ -16396,8 +16480,8 @@ packages:
     hasBin: true
     dev: true
 
-  /typescript/5.2.2:
-    resolution: {integrity: sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==}
+  /typescript/5.4.4:
+    resolution: {integrity: sha512-dGE2Vv8cpVvw28v8HCPqyb08EzbBURxDpuhJvTrusShUfGnhHBafDsLdS1EhhxyL6BJQE+2cT3dDPAv+MQ6oLw==}
     engines: {node: '>=14.17'}
     hasBin: true
     dev: true

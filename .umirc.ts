@@ -21,12 +21,13 @@ export default defineConfig({
           return '../index.tsx';
         },
         customStyleName: (name) => {
-          return '../style/index.less';
+          return '../style/index.scss';
         },
       },
       '@lwrench/toy-ui',
     ],
   ],
   webpack5: {},
+  sass: {},
   // more config: https://d.umijs.org/config
 });

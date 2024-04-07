@@ -11,6 +11,7 @@
     "declaration": true,
     "baseUrl": "./",
     "declarationDir": "lib",
+    "noImplicitAny": false,
     "paths": {
       "@lwrench/toy-ui": ["src"]
     }

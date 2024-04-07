@@ -1,0 +1,153 @@
+@import './darkTheme.scss';
+@import './lightTheme.scss';
+
+html {
+  --primary-color-1: var(--gray-1);
+  --primary-color-2: var(--gray-2);
+  --primary-color-3: var(--gray-3);
+  --primary-color-4: var(--gray-4);
+  --primary-color-5: var(--gray-5);
+  --primary-color-6: var(--gray-6);
+  --primary-color-7: var(--gray-7);
+  --primary-color-8: var(--gray-8);
+  --primary-color-9: var(--gray-9);
+  --primary-color-10: var(--gray-10);
+  --primary-color-11: var(--gray-11);
+  --primary-color-12: var(--gray-12);
+
+  --error-color-1: var(--red-1);
+  --error-color-2: var(--red-2);
+  --error-color-3: var(--red-3);
+  --error-color-4: var(--red-4);
+  --error-color-5: var(--red-5);
+  --error-color-6: var(--red-6);
+  --error-color-7: var(--red-7);
+  --error-color-8: var(--red-8);
+  --error-color-9: var(--red-9);
+  --error-color-10: var(--red-10);
+  --error-color-11: var(--red-11);
+  --error-color-12: var(--red-12);
+
+  --success-color-1: var(--green-1);
+  --success-color-2: var(--green-2);
+  --success-color-3: var(--green-3);
+  --success-color-4: var(--green-4);
+  --success-color-5: var(--green-5);
+  --success-color-6: var(--green-6);
+  --success-color-7: var(--green-7);
+  --success-color-8: var(--green-8);
+  --success-color-9: var(--green-9);
+  --success-color-10: var(--green-10);
+  --success-color-11: var(--green-11);
+  --success-color-12: var(--green-12);
+
+  --warning-color-1: var(--orange-1);
+  --warning-color-2: var(--orange-2);
+  --warning-color-3: var(--orange-3);
+  --warning-color-4: var(--orange-4);
+  --warning-color-5: var(--orange-5);
+  --warning-color-6: var(--orange-6);
+  --warning-color-7: var(--orange-7);
+  --warning-color-8: var(--orange-8);
+  --warning-color-9: var(--orange-9);
+  --warning-color-10: var(--orange-10);
+  --warning-color-11: var(--orange-11);
+  --warning-color-12: var(--orange-12);
+
+  /* 边框颜色 */
+  --color-border-1: var(--primary-color-2);
+  --color-border-2: var(--primary-color-4);
+  --color-border-3: var(--primary-color-5);
+  --color-border-4: var(--primary-color-7);
+
+  /* 填充颜色 */
+  --color-fill-1: var(--primary-color-1);
+  --color-fill-2: var(--primary-color-2);
+  --color-fill-3: var(--primary-color-4);
+  --color-fill-4: var(--primary-color-5);
+
+  /* 文字颜色 */
+  --color-text-1: var(--primary-color-12);
+  --color-text-2: var(--primary-color-10);
+  --color-text-3: var(--primary-color-8);
+  --color-text-4: var(--primary-color-6);
+
+  /* 字体大小 */
+  --font-size-body-4: 14px;
+  --font-size-body-2: 12px;
+  --font-size-body-1: 10px;
+  --font-size-title-1: 16px;
+  --font-size-title-2: 20px;
+  --font-size-title-3: 24px;
+  --font-size-display-1: 36px;
+  --font-size-display-2: 48px;
+  --font-size-display-3: 56px;
+
+  /* 字重 */
+  --font-weight-100: 100;
+  --font-weight-200: 200;
+  --font-weight-300: 300;
+  --font-weight-400: 400;
+  --font-weight-500: 500;
+  --font-weight-600: 600;
+  --font-weight-700: 700;
+  --font-weight-800: 800;
+  --font-weight-900: 900;
+
+  /* 尺寸 */
+  --size-none: 0;
+  --size-1: 4px;
+  --size-2: 8px;
+  --size-3: 12px;
+  --size-4: 16px;
+  --size-5: 20px;
+  --size-6: 24px;
+  --size-7: 28px;
+  --size-8: 32px;
+  --size-9: 36px;
+  --size-10: 40px;
+
+  /* 组件尺寸 */
+  --size-mini: var(--size-6);
+  --size-small: var(--size-7);
+  --size-default: var(--size-8);
+  --size-large: var(--size-9);
+
+  /* 边框宽度 */
+  --border-none: 0;
+  --border-1: 1px;
+  --border-2: 2px;
+  --border-3: 3px;
+
+  /* 边框圆角 */
+  --border-radius-none: 0;
+  --border-radius-small: 2;
+  --border-radius-medium: 4;
+  --border-radius-large: 8;
+  --border-radius-circle: 50%;
+
+  /* 阴影 */
+  --shadow-special: 0 0 1px rgba(0, 0, 0, 0.3);
+  --shadow1-center: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  --shadow2-center: 0 0 10px rgba(0, 0, 0, 0.1);
+  --shadow3-center: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* 背景颜色 */
+html {
+  --color-bg-1: #fff;
+  --color-bg-2: #fff;
+  --color-bg-3: #fff;
+  --color-bg-4: #fff;
+  --color-bg-5: #fff;
+  --color-bg-white: #fff;
+}
+
+html[theme="dark"] {
+  --color-bg-1: var(--gray-2);
+  --color-bg-2: var(--gray-4);
+  --color-bg-3: var(--gray-6);
+  --color-bg-4: var(--gray-8);
+  --color-bg-5: var(--gray-10);
+  --color-bg-white: var(--gray-12);
+}
