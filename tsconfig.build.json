@@ -1,7 +1,8 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "emitDeclarationOnly": true
+    "emitDeclarationOnly": true,
+    "noImplicitAny": false
   },
-  "exclude": ["node_modules", "lib", "esm", "**/examples/**"]
+  "exclude": ["node_modules", "lib", "esm", "**/examples/**", "./src/components/validator"]
 }

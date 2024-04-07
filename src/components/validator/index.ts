@@ -37,7 +37,7 @@ function asyncMap(objArr: Series, func, callback) {
         // 同时执行回调函数，兼容不同的写法需求
         callback && callback(errors);
         // 如果存在错误则 reject 错误信息，否则就 resolve 表示成功
-        errors.length ? reject(errors) : resolve();
+        errors.length ? reject(errors) : resolve(true);
       }
     };
     // 遍历执行验证每一个字段策略
