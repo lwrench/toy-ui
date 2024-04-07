@@ -1,0 +1,9 @@
+@import '../../style/index.scss';
+@import './tokens.scss';
+
+$btn-prefix-cls: #{$prefix}-btn;
+
+.toy-btn-primary {
+  font-size: var(--font-size-body-4);
+  background-color: var(--color-bg-2);
+}
