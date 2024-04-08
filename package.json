@@ -2,13 +2,15 @@
   "name": "@lwrench/toy-ui",
   "version": "0.0.2",
   "engines": {
-    "node": "16.17.1"
+    "node": "16",
+    "pnpm": "7.33.6"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/lwrench/toy-ui"
   },
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "start": "dumi dev",
     "docs:build": "dumi build",
     "docs:deploy": "gh-pages -d docs-dist",
@@ -38,8 +40,8 @@
     "registry": "https://registry.npmjs.org/"
   },
   "peerDependencies": {
-    "react": ">=16",
-    "react-dom": ">=16"
+    "react": ">=17",
+    "react-dom": ">=17"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.15.1",
@@ -67,7 +69,6 @@
     "yorkie": "^2.0.0"
   },
   "dependencies": {
-    "antd": "^5.8.5",
     "classnames": "^2.4.0",
     "lodash": "^4.17.21"
   }
